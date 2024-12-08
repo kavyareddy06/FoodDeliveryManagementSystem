@@ -1,0 +1,107 @@
+<div
+  class="min-h-screen flex items-center justify-center bg-cover bg-center p-4"
+  style="background-image: url('assets/pictures/login.jpg');"
+>
+  <div class="flex w-full max-w-4xl bg-white shadow-md rounded-lg">
+    
+    <div class="w-1/2 p-8">
+      <h1 class="text-2xl font-semibold text-gray-800 mb-6">Create an Account</h1>
+      <form (ngSubmit)="register()" class="space-y-6">
+     
+        <div class="flex items-center space-x-2">
+          <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+          <span class="text-red-500 text-lg">*</span> <!-- Asterisk on the same line -->
+          <input
+            id="username"
+            type="text"
+            [(ngModel)]="user.username"
+            name="username"
+            placeholder="Enter your username"
+            required
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black"
+          />
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+          <span class="text-red-500 text-lg">*</span> <!-- Asterisk on the same line -->
+          <input
+            id="email"
+            type="email"
+            [(ngModel)]="user.email"
+            name="email"
+            placeholder="Enter your email"
+            required
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black"
+          />
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <label for="phoneNumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
+          <span class="text-red-500 text-lg">*</span> <!-- Asterisk on the same line -->
+          <input
+            id="phoneNumber"
+            type="text"
+            [(ngModel)]="user.phoneNumber"
+            name="phoneNumber"
+            placeholder="Enter your phone number"
+            required
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black"
+          />
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
+          <span class="text-red-500 text-lg">*</span> <!-- Asterisk on the same line -->
+          <select
+            id="role"
+            [(ngModel)]="user.role"
+            name="role"
+            required
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black"
+          >
+            <option value="Admin">Admin</option>
+            <option value="Customer">Customer</option>
+            <option value="RestaurantOwner">Restaurant Owner</option>
+            <option value="DeliveryDriver">Delivery Driver</option>
+          </select>
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+          <span class="text-red-500 text-lg">*</span> <!-- Asterisk on the same line -->
+          <input
+            id="password"
+            type="password"
+            [(ngModel)]="user.password"
+            name="password"
+            placeholder="Enter your password"
+            required
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-black text-white py-2 rounded-md font-medium hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+        >
+          Register
+        </button>
+      </form>
+      <p class="text-sm text-center text-gray-600 mt-4">
+        Already Have an account <a href="/login" class="text-black hover:underline">Sign up</a>
+      </p>
+    </div>
+
+    
+    <div class="hidden lg:block w-1/2 bg-purple-200">
+      <div class="flex items-center justify-center h-full">
+        <img
+          src="assets/pictures/register.jpg"
+          alt="Illustration"
+          class="w-full h-full"
+        />
+      </div>
+    </div>
+  </div>
+</div>

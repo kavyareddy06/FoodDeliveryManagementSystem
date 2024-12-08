@@ -1,0 +1,48 @@
+<nav class="navbar">
+    <!-- Logo -->
+    <div class="logo">
+      <a routerLink="/home" class="logo-link text-red-500 text-2xl">ChuVi</a>
+    </div>
+  
+    <!-- Navigation Links -->
+    <ul class="nav-links" [ngClass]="{ 'mobile-menu': isMobileMenuOpen }">
+      <li><a routerLink="/home" class="hover-link">Home</a></li>
+      <li><a routerLink="/app-restaurant-list" class="hover-link">Restaurants</a></li>
+      <li><a routerLink="/aboutUs" class="hover-link">About us</a></li>
+      <li><a routerLink="/search" class="hover-link">Search</a></li>
+      <li><a routerLink="/contact" class="hover-link">Contact us</a></li>
+  
+      <!-- Cart Button with Item Count -->
+      <li class="cart">
+        <button class="cart-btn" (click)="goToCart()">
+          <i class="fas fa-shopping-cart"></i>
+          <!-- <span *ngIf="cartItemCount > 0" class="cart-count">
+            {{ cartItemCount }}
+          </span> -->
+        </button>
+      </li>
+  
+      <!-- Login/Username -->
+      <li *ngIf="username; else loginButton" class="dropdown"  (click)="toggleDropdown()">
+        <button class="dropdown-btn text-slate-100">
+          Hello, {{ username }}
+        </button>
+        <ul class="dropdown-menu" [ngClass]="{ 'show': isDropdownOpen }">
+          <li (click)="profile()">Profile</li>
+          <li (click)="orders()">My Orders</li>
+          <li (click)="logout()" class="logout-link">Logout</li>
+        </ul>
+      </li>
+      <ng-template #loginButton>
+        <li><a routerLink="/login" class="login-btn">Log in</a></li>
+      </ng-template>
+    </ul>
+  
+    <!-- Hamburger Icon -->
+    <div class="hamburger" (click)="toggleMobileMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+  

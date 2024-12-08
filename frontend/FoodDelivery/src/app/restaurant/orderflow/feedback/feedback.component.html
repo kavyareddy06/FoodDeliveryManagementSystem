@@ -1,0 +1,87 @@
+<div class="feedback-modal bg-white rounded-lg shadow-lg p-6 w-96 mx-auto">
+  <h2 class="text-2xl font-semibold text-center mb-4">Provide Your Feedback</h2>
+
+  <!-- Star rating for food quality -->
+  <div class="mb-4">
+    <h3 class="text-lg font-medium">Food Quality</h3>
+    <div class="star-rating flex gap-2">
+      <mat-icon
+        *ngFor="let star of [1, 2, 3, 4, 5]"
+        [ngClass]="{'filled': star <= foodQualityRating}"
+        class="cursor-pointer"
+        (click)="setFoodQualityRating(star)"
+      >
+        star
+      </mat-icon>
+    </div>
+  </div>
+
+  <!-- Star rating for delivery time -->
+  <div class="mb-4">
+    <h3 class="text-lg font-medium">Delivery Time</h3>
+    <div class="star-rating flex gap-2">
+      <mat-icon
+        *ngFor="let star of [1, 2, 3, 4, 5]"
+        [ngClass]="{'filled': star <= deliveryTimeRating}"
+        class="cursor-pointer"
+        (click)="setDeliveryTimeRating(star)"
+      >
+        star
+      </mat-icon>
+    </div>
+  </div>
+
+  <!-- Star rating for driver professionalism -->
+  <div class="mb-4">
+    <h3 class="text-lg font-medium">Driver Professionalism</h3>
+    <div class="star-rating flex gap-2">
+      <mat-icon
+        *ngFor="let star of [1, 2, 3, 4, 5]"
+        [ngClass]="{'filled': star <= driverProfessionalismRating}"
+        class="cursor-pointer"
+        (click)="setDriverProfessionalismRating(star)"
+      >
+        star
+      </mat-icon>
+    </div>
+  </div>
+
+  <!-- Overall rating -->
+  <div class="mb-4">
+    <h3 class="text-lg font-medium">Overall Experience</h3>
+    <div class="star-rating flex gap-2">
+      <mat-icon
+        *ngFor="let star of [1, 2, 3, 4, 5]"
+        [ngClass]="{'filled': star <= rating}"
+        class="cursor-pointer"
+        (click)="setRating(star)"
+      >
+        star
+      </mat-icon>
+    </div>
+  </div>
+
+  <!-- Feedback text area -->
+  <textarea
+    [(ngModel)]="feedbackText"
+    placeholder="Write your feedback here..."
+    rows="4"
+    class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+  ></textarea>
+
+  <!-- Buttons -->
+  <div class="flex justify-between mt-6">
+    <button
+      (click)="submit()"
+      class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+    >
+      Submit Feedback
+    </button>
+    <button
+      (click)="closeModal()"
+      class="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400"
+    >
+      Cancel
+    </button>
+  </div>
+</div>

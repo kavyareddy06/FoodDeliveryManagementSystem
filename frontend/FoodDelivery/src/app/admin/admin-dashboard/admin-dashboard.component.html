@@ -1,0 +1,73 @@
+<app-nav></app-nav>
+<div class="flex h-screen mt-16">
+    <!-- Sidebar -->
+    <div class="w-64 bg-slate-900 text-white">
+      <div class="p-6 text-center font-bold text-xl">Dashboard</div>
+      <nav class="flex-grow">
+        <ul class="space-y-4 p-4">
+          <li>
+            <a
+              routerLink="/admin-dashboard/restaurant-details"
+              routerLinkActive="bg-blue-700"
+              class="block p-3 rounded hover:bg-blue-700 transition duration-200"
+            >
+              Restaurant Dashboard
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/admin-dashboard/coupons"
+              routerLinkActive="bg-blue-700"
+              class="block p-3 rounded hover:bg-blue-700 transition duration-200"
+            >
+              Promotions
+            </a>
+          </li>
+          <li>
+           
+            <a
+              routerLink="/admin-dashboard/deilvery-person"
+              routerLinkActive="bg-blue-700"
+              class="block p-3 rounded hover:bg-blue-700 transition duration-200"
+            >
+            Add Deilvery Person
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/admin-dashboard/admin-report"
+              routerLinkActive="bg-blue-700"
+              class="block p-3 rounded hover:bg-blue-700 transition duration-200"
+            >
+              Restaurant Reports
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/admin-dashboard/admin-inventories"
+              routerLinkActive="bg-blue-700"
+              class="block p-3 rounded hover:bg-blue-700 transition duration-200"
+            >
+             Inventories and Stocks
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/admin-dashboard/admin-feedback"
+              routerLinkActive="bg-blue-700"
+              class="block p-3 rounded hover:bg-blue-700 transition duration-200"
+            >
+              Feedback
+            </a>
+          </li>
+          
+        </ul>
+      </nav>
+    </div>
+  
+    <!-- Main Content -->
+    <div class="flex-grow p-6 bg-gray-100 overflow-auto">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  

@@ -1,0 +1,10 @@
+/* Example custom styles for spacing */
+.container {
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  

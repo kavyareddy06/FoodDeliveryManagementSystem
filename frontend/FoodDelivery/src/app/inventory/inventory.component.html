@@ -1,0 +1,89 @@
+<div class="max-w-4xl mx-auto p-6">
+    <h2 class="text-3xl font-bold text-center mb-6">Inventory</h2>
+
+    <!-- Restaurant ID Input -->
+    <div class="mb-6">
+        <input type="number" [(ngModel)]="selectedRestaurantId" placeholder="Enter Restaurant ID" 
+               (change)="getAllInventory()" 
+               class="border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-full" />
+    </div>
+
+    <!-- List Inventory Items -->
+    <h3 class="text-2xl font-semibold mb-4">Inventory List</h3>
+    <table class="min-w-full table-auto bg-white rounded-lg shadow-md overflow-hidden">
+        <thead class="bg-gray-100">
+            <tr>
+                <th class="px-4 py-2 text-left">Item ID</th>
+                <th class="px-4 py-2 text-left">Quantity</th>
+                <th class="px-4 py-2 text-left">Status</th>
+                <th class="px-4 py-2 text-left">Reorder Level</th>
+                <th class="px-4 py-2 text-left">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of inventoryList">
+                <td class="px-4 py-2">{{ item.itemId }}</td>
+                <td class="px-4 py-2">{{ item.quantity }}</td>
+                <td class="px-4 py-2">{{ item.status }}</td>
+                <td class="px-4 py-2">{{ item.reorderLevel }}</td>
+                <td class="px-4 py-2">
+                    <!-- Update Inventory Button -->
+                    <button (click)="updateInventoryData.itemId = item.itemId; updateInventoryData.quantity = item.quantity"
+                            class="text-blue-500 hover:text-blue-600 focus:outline-none">
+                        Update
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Add New Inventory -->
+    <h3 class="text-2xl font-semibold mt-8 mb-4">Add New Inventory</h3>
+    <form (submit)="addInventory()" class="bg-white p-6 rounded-lg shadow-md mb-8 space-y-4">
+        <div class="flex flex-col">
+            <label for="restaurantId" class="text-sm font-medium text-gray-700">Restaurant ID</label>
+            <input type="number" [(ngModel)]="newInventory.restaurantId" name="restaurantId" placeholder="Restaurant ID" required
+                   class="border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div class="flex flex-col">
+            <label for="itemId" class="text-sm font-medium text-gray-700">Item ID</label>
+            <input type="number" [(ngModel)]="newInventory.itemId" name="itemId" placeholder="Item ID" required
+                   class="border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div class="flex flex-col">
+            <label for="quantity" class="text-sm font-medium text-gray-700">Quantity</label>
+            <input type="number" [(ngModel)]="newInventory.quantity" name="quantity" placeholder="Quantity" required
+                   class="border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div class="flex flex-col">
+            <label for="reorderLevel" class="text-sm font-medium text-gray-700">Reorder Level</label>
+            <input type="number" [(ngModel)]="newInventory.reorderLevel" name="reorderLevel" placeholder="Reorder Level"
+                   required class="border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div class="flex flex-col">
+            <label for="status" class="text-sm font-medium text-gray-700">Status</label>
+            <select [(ngModel)]="newInventory.status" name="status" required
+                    class="border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="In Stock">In Stock</option>
+                <option value="Low Stock">Low Stock</option>
+            </select>
+        </div>
+        <button type="submit" class="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 w-full">Add Inventory</button>
+    </form>
+
+    <!-- Update Inventory -->
+    <h3 class="text-2xl font-semibold mt-8 mb-4">Update Inventory</h3>
+    <form (submit)="updateInventory()" class="bg-white p-6 rounded-lg shadow-md space-y-4">
+        <div class="flex flex-col">
+            <label for="itemId" class="text-sm font-medium text-gray-700">Item ID</label>
+            <input type="number" [(ngModel)]="updateInventoryData.itemId" name="itemId" placeholder="Item ID" required
+                   class="border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div class="flex flex-col">
+            <label for="quantity" class="text-sm font-medium text-gray-700">Quantity</label>
+            <input type="number" [(ngModel)]="updateInventoryData.quantity" name="quantity" placeholder="Quantity" required
+                   class="border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <button type="submit" class="bg-green-500 text-white p-2 rounded-lg hover:bg-green-600 w-full">Update Inventory</button>
+    </form>
+</div>

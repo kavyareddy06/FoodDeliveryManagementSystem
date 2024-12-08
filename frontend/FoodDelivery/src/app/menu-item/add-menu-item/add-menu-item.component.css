@@ -1,0 +1,25 @@
+.add-menu-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* Adds space between table and form */
+  }
+  
+  .table-auto th, 
+  .table-auto td {
+    text-align: left;
+    padding: 1rem;
+  }
+  
+  .table-auto th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+  }
+  
+  .table-auto tr:hover {
+    background-color: #f1f1f1; /* Subtle hover effect for rows */
+  }
+  
+  .form {
+    border: 1px solid #e5e7eb; /* Border for form */
+  }
+  

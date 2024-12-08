@@ -1,0 +1,54 @@
+<div 
+  class="bg-cover bg-center h-full w-full" 
+  style="background-image: url('assets/pictures/bg-intro-01.jpg');"
+>
+  <div class="search-container p-4 max-w-3xl mx-auto bg-white rounded-lg shadow-lg pt-12">
+
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      (input)="onSearch()"
+      class="p-3 pt-20 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+      placeholder="Search for restaurants or menu items"
+    />
+  </div>
+
+  <div *ngIf="isSearching" class="loading-indicator text-center mt-4">
+    <p class="text-gray-600 text-lg animate-pulse">Searching...</p>
+  </div>
+
+  <div *ngIf="!isSearching && searchResults.length > 0" class="results-container mt-6 p-4 bg-white rounded-lg shadow-lg">
+    <h3 class="text-xl font-bold mb-4 text-gray-800">Search Results:</h3>
+
+    <!-- Restaurants Section -->
+    <div *ngIf="isRestaurantSearch">
+      <h4 class="text-lg font-semibold text-gray-800 mb-3">Restaurants</h4>
+      <ul class="space-y-4">
+        <li *ngFor="let restaurant of searchResults" class="bg-gray-50 hover:bg-gray-100 p-4 rounded-lg shadow-sm border border-gray-200 transition-all duration-200">
+          <a
+            (click)="goToRestaurantDetail(restaurant.restaurantId)"
+            class="cursor-pointer text-blue-600 hover:underline text-lg font-medium"
+          >
+            {{ restaurant.name }}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Menu Items Section -->
+    <div *ngIf="!isRestaurantSearch">
+      <h4 class="text-lg font-semibold text-gray-800 mb-3">Menu Items</h4>
+      <ul class="space-y-4">
+        <li *ngFor="let item of searchResults" class="bg-gray-50 hover:bg-gray-100 p-4 rounded-lg shadow-sm border border-gray-200 transition-all duration-200">
+          <span class="text-gray-700 text-lg font-medium">{{ item.name }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div *ngIf="!isSearching && searchResults.length === 0" class="no-results text-center mt-6">
+    <p class="text-white text-lg italic">
+      No results found for "<span class="font-semibold text-white">{{ searchQuery }}</span>"
+    </p>
+  </div>
+</div>

@@ -1,0 +1,136 @@
+/* Apply Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
+/* Apply Google Fonts to body and specific classes */
+.section {
+  font-family: 'Poppins', sans-serif; /* Default font */
+  background-color: beige;
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-lora {
+  font-family: 'Lora', serif;
+}
+
+/* Apply border red to the whole About Us section */
+.section-welcome {
+  border: 5px solid rgb(230, 151, 151); /* Red border */
+  border-radius: 10px; /* Optional: Adds rounded corners */
+  padding: 30px; /* Adjust padding for spacing */
+}
+
+/* Style the 'Italian Restaurant' text color to red */
+.tit2 {
+  color: #f00; /* Red color */
+}
+
+/* Style the 'Our Story' link */
+.txt4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ea965e;
+  text-decoration: none;
+  position: relative;
+}
+
+.txt4:hover {
+  color: #ee9d64; /* Darker blue on hover */
+}
+
+.txt4::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: #d04f32;
+  left: 0;
+  bottom: -5px;
+  transition: width 0.3s;
+}
+
+.txt4:hover::after {
+  width: 100%;
+}
+
+/* Image zoom effect */
+.group:hover .group-hover\:scale-110 {
+  transform: scale(1.1);
+}
+
+
+.section-welcome {
+    background-color: #f5f5f5;
+    padding-top: 120px;
+    padding-bottom: 105px;
+  }
+  
+  .wrap-text-welcome {
+    text-align: center;
+  }
+  
+  .wrap-pic-welcome img {
+    width: 100%;
+    height: 400px;
+    border-radius: 10px;
+  }
+  
+  .tit2 {
+    font-size: 24px;
+    color: #f68d8d;
+  }
+  
+  .tit3 {
+    font-size: 36px;
+    color: #333;
+    margin-top: 5px;
+  }
+  
+  .txt4 {
+    color: #fea691;
+    text-decoration: none;
+  }
+  
+ 
+  @media (min-width: 768px) {
+    .section-welcome .wrap-text-welcome {
+      text-align: left;
+    }
+  
+    .section-welcome .wrap-pic-welcome {
+      width: 50%;
+      margin-left: auto;
+    }
+  
+    .section-welcome .col-md-6 {
+      width: 50%;
+      padding: 30px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .section-welcome .wrap-text-welcome {
+      padding-top: 0;
+    }
+  
+    .section-welcome .wrap-pic-welcome img {
+      border-radius: 10px;
+    }
+  }
+.wrap-pic-welcome {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .wrap-pic-welcome img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  .wrap-pic-welcome:hover img {
+    transform: scale(1.1);
+  }
+  

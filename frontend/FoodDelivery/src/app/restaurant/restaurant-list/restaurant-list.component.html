@@ -1,0 +1,41 @@
+<app-one></app-one>
+<app-nav></app-nav>
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto text-center">
+    <h2 class="text-3xl font-semibold mb-8 text-black pb-8">Explore Our Top Restaurants</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
+      <div *ngFor="let restaurant of restaurants" class="card">
+        <img [src]="restaurant.imageUrl" alt="Restaurant Image" class="card__background">
+        <div class="card__content">
+          <div class="card__content--container">
+            <h3 class="card__title">{{ restaurant.name }}</h3>
+            <p class="card__description">{{ restaurant.address }}</p>
+            <p class="card__description">{{ restaurant.cuisineType }}</p>
+          </div>
+          <button class="card__button" (click)="viewRestaurantDetails(restaurant.restaurantId)">View Details</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination Controls -->
+   <!-- Pagination Controls -->
+<div class="mt-8 flex justify-center items-center space-x-4">
+  <button
+    class="px-6 py-2 bg-gray-200 text-gray-600 rounded-lg shadow hover:bg-gray-300 hover:text-gray-700 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+    [disabled]="currentPage === 1"
+    (click)="changePage(currentPage - 1)"
+  >
+    Previous
+  </button>
+  <span class="text-lg font-semibold text-gray-800">{{ currentPage }}</span>
+  <button
+    class="px-6 py-2 bg-gray-200 text-gray-600 rounded-lg shadow hover:bg-gray-300 hover:text-gray-700 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+    [disabled]="currentPage * itemsPerPage >= totalItems"
+    (click)="changePage(currentPage + 1)"
+  >
+    Next
+  </button>
+</div>
+
+  </div>
+</section>

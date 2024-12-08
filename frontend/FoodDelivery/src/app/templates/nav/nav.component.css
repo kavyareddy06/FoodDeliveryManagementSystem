@@ -1,0 +1,148 @@
+
+body, html {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.8);
+ /* Transparent Background */
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar.scrolled {
+    background: rgba(0, 0, 0, 0.8); /* Add background on scroll */
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+  }
+  
+  .logo img {
+    height: 40px;
+  }
+  .logo a{
+    padding-right: 10px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bolder;
+  
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  .cart-btn{
+    color: azure;
+  }
+  .nav-links li {
+    margin: 0 15px;
+    padding:10px;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  .nav-links a:hover {
+    color: #ffcc00; /* Highlight color */
+  }
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #141414;
+    border-radius: 5px;
+    padding: 10px 0;
+    list-style: none;
+    display: none; /* Hidden by default */
+    min-width: 150px;
+    z-index: 1000;
+  }
+  
+  .dropdown-menu.show {
+    display: block; /* Show on toggle */
+  }
+  
+  .dropdown-menu li {
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu li:hover {
+    background: #a1abbd;
+  }
+  
+  
+  /* Hamburger Menu for Mobile */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  
+  .hamburger span {
+    height: 3px;
+    width: 25px;
+    background: white;
+    margin: 4px 0;
+    transition: 0.3s;
+  }
+  
+  /* Mobile Menu Styling */
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: rgba(34, 33, 33, 0.9);
+    padding: 10px 0;
+    text-align: center;
+  }
+  
+  .mobile-menu li {
+    margin: 10px 0;
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+  
+    .hamburger {
+      display: flex;
+    }
+  
+    .nav-links.mobile-menu {
+      display: flex;
+    }
+  }
+  

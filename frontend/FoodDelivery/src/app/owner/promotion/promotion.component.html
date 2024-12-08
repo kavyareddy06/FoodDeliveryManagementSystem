@@ -1,0 +1,68 @@
+<div class="promotion-list p-6 bg-white shadow-lg rounded-lg">
+    <h3 class="text-2xl font-semibold mb-4">Active Promotions</h3>
+    <table class="min-w-full bg-gray-50 border border-gray-200 rounded-lg shadow-md">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="py-2 px-4 text-left font-medium text-gray-700">Promotion Code</th>
+          <th class="py-2 px-4 text-left font-medium text-gray-700">Discount Type</th>
+          <th class="py-2 px-4 text-left font-medium text-gray-700">Discount Amount</th>
+          <th class="py-2 px-4 text-left font-medium text-gray-700">Start Date</th>
+          <th class="py-2 px-4 text-left font-medium text-gray-700">End Date</th>
+          <th class="py-2 px-4 text-left font-medium text-gray-700">Status</th>
+          <th class="py-2 px-4 text-left font-medium text-gray-700">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let promotion of promotions" class="border-t">
+          <td class="py-2 px-4">{{ promotion.code }}</td>
+          <td class="py-2 px-4">{{ promotion.discountType }}</td>
+          <td class="py-2 px-4">{{ promotion.discountAmount }}</td>
+          <td class="py-2 px-4">{{ promotion.startDate | date }}</td>
+          <td class="py-2 px-4">{{ promotion.endDate | date }}</td>
+          <td class="py-2 px-4">{{ promotion.status }}</td>
+          <td class="py-2 px-4">
+            <button (click)="editPromotion(promotion)" class="text-blue-600 hover:text-blue-800 mr-2">Edit</button>
+            <button (click)="deletePromotion(promotion)" class="text-red-600 hover:text-red-800">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="promotion-form p-6 bg-white shadow-lg rounded-lg mt-6">
+    <h3 class="text-2xl font-semibold mb-4">{{ isEditing ? 'Edit Promotion' : 'Create New Promotion' }}</h3>
+    <form (ngSubmit)="savePromotion()">
+      <div class="mb-4">
+        <label for="code" class="block text-gray-700 font-medium">Promotion Code</label>
+        <input id="code" [(ngModel)]="promotion.code" name="code" required class="w-full p-2 border border-gray-300 rounded-lg mt-2" />
+      </div>
+  
+      <div class="mb-4">
+        <label for="discountType" class="block text-gray-700 font-medium">Discount Type</label>
+        <select id="discountType" [(ngModel)]="promotion.discountType" name="discountType" required class="w-full p-2 border border-gray-300 rounded-lg mt-2">
+          <option value="percentage">Percentage</option>
+          <option value="fixed">Fixed Amount</option>
+        </select>
+      </div>
+  
+      <div class="mb-4">
+        <label for="discountAmount" class="block text-gray-700 font-medium">Discount Amount</label>
+        <input id="discountAmount" [(ngModel)]="promotion.discountAmount" name="discountAmount" required type="number" class="w-full p-2 border border-gray-300 rounded-lg mt-2" />
+      </div>
+  
+      <div class="mb-4">
+        <label for="startDate" class="block text-gray-700 font-medium">Start Date</label>
+        <input id="startDate" [(ngModel)]="promotion.startDate" name="startDate" type="date" required class="w-full p-2 border border-gray-300 rounded-lg mt-2" />
+      </div>
+  
+      <div class="mb-4">
+        <label for="endDate" class="block text-gray-700 font-medium">End Date</label>
+        <input id="endDate" [(ngModel)]="promotion.endDate" name="endDate" type="date" required class="w-full p-2 border border-gray-300 rounded-lg mt-2" />
+      </div>
+  
+      <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700">
+        {{ isEditing ? 'Update Promotion' : 'Create Promotion' }}
+      </button>
+    </form>
+  </div>
+  

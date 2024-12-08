@@ -1,0 +1,29 @@
+.feedback-list {
+    padding: 1rem;
+  }
+  
+  .feedback-list .overflow-x-auto {
+    overflow-x: auto;
+    margin-bottom: 1rem;
+  }
+  
+  .feedback-list table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .feedback-list th, 
+  .feedback-list td {
+    text-align: left;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db; /* Light gray border */
+  }
+  
+  .feedback-list tr:nth-child(even) {
+    background-color: #f9fafb; /* Light background for even rows */
+  }
+  
+  .feedback-list tr:hover {
+    background-color: #f3f4f6; /* Slightly darker hover effect */
+  }
+  

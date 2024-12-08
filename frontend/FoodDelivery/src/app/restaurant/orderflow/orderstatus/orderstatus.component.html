@@ -1,0 +1,95 @@
+<section class="bg-slate-900"  [ngStyle]="{ 'background-image': 'url(assets/pictures/bg-intro-01.jpg)' }">
+  <h3 class="bold text-white text-4xl text-center">Order Status</h3>
+
+<div *ngFor="let order of orders.slice().reverse()" class="order-container">
+    <div class="flex justify-between p-1">
+        <h3>Order #{{ order.orderId }}</h3>
+        <h3><span class="bold text-red-800">Ordered Date</span> : {{ order.orderDate }}</h3>
+      </div>
+      
+    <!-- Order Status and Progress Bar -->
+    <div class="order-status">
+      <mat-icon *ngIf="order.status === 'pending'">hourglass_empty</mat-icon>
+      <mat-icon *ngIf="order.status === 'in preparation'">restaurant</mat-icon>
+      <mat-icon *ngIf="order.status === 'out for delivery'">local_shipping</mat-icon>
+      <mat-icon *ngIf="order.status === 'delivered'">check_circle</mat-icon>
+      <mat-icon *ngIf="order.status === 'cancelled'">cancel</mat-icon>
+  
+      <div class="progress-bar-container">
+        <div class="progress-bar" [style.width.%]="getProgressValue(order.status)"></div>
+      </div>
+  
+      <p>{{ order.status }}</p>
+    </div>
+  
+    <!-- Order Items -->
+    <div class="order-items">
+      <h4>Menu Items</h4>
+      <ul class="menu-items-list">
+        <li *ngFor="let item of order.orderItems.$values" class="menu-item">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8W7eDfhmUokaDVSB0f29gPWGIqcta0lvqbg&s" alt="{{ item.menuItem.name }}" class="menu-item-image">
+          <div class="item-details">
+            <p>{{ item.menuItem.name }} - {{ item.quantity }} x {{ item.price | currency }}</p>
+          </div>
+        </li>
+      </ul>
+  
+      <p><strong>Total Price: {{ order.totalAmount | currency }}</strong></p>
+    </div>
+  
+    <!-- Track Order and Cancel Order Buttons -->
+    <div class="order-actions">
+      <button (click)="trackOrder(order.orderId)" mat-button class="action-button track-button">Track Order</button>
+  
+      <button 
+        *ngIf="order.status === 'pending' || order.status === 'in preparation'"
+        (click)="cancelOrder(order.orderId)"
+        mat-raised-button
+        [matTooltip]="'Cancel this order'"
+        class="action-button cancel-button">
+        Cancel Order
+      </button>
+  
+      <button 
+        *ngIf="order.status === 'delivered'" 
+        (click)="openFeedbackModal(order.orderId)" 
+        mat-raised-button 
+        class="action-button feedback-button">
+        Give Feedback
+      </button>
+      <button 
+      (click)="checkDriverStatus(order.orderId)" 
+      mat-raised-button 
+      class="action-button driver-status-button">
+      Check Driver Status
+    </button>
+    </div>
+    <!-- Driver Details Modal -->
+    <div *ngIf="isDriverDetailsModalOpen" class="driver-details-modal" [ngClass]="{ 'open': isDriverDetailsModalOpen }">
+        <h3>Driver Details</h3>
+    
+        <div *ngIf="!driverDetails">
+          <p>No delivery driver assigned to this order yet.</p>
+        </div>
+    
+        <div *ngIf="driverDetails">
+          <p><strong>Name:</strong> {{ driverDetails['username'] }}</p>
+          <p><strong>Email:</strong> {{ driverDetails['email'] }}</p>
+          <p><strong>Phone:</strong> {{ driverDetails['phoneNumber'] }}</p>
+    
+          <h4>Order Tracking</h4>
+          <p><strong>Status:</strong> {{ trackingDetails?.status }}</p>
+          <p><strong>Location:</strong> {{ trackingDetails?.location }}</p>
+          <p><strong>Last Updated:</strong> {{ trackingDetails?.timestamp }}</p>
+        </div>
+    
+        <button (click)="closeDriverDetailsModal()" mat-button class="close-button">Close</button>
+      </div>
+    <!-- Feedback Modal (only shown for selected order) -->
+    <app-feedback *ngIf="isFeedbackModalOpen && selectedOrderId === order.orderId" 
+                  [orderId]="selectedOrderId" 
+                  (submitFeedback)="giveFeedback($event)" 
+                  (close)="closeFeedbackModal()">
+    </app-feedback>
+  </div>
+</section>

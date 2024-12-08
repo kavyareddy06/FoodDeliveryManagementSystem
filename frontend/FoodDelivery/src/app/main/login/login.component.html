@@ -1,0 +1,67 @@
+<div
+  class="min-h-screen flex items-center justify-center bg-cover bg-center p-4"
+  style="background-image: url('assets/pictures/login.jpg');"
+>
+  <div class="flex w-full max-w-4xl bg-white shadow-md rounded-lg">
+    <!-- Left Section -->
+    <div class="w-1/2 p-8">
+      <h1 class="text-2xl font-semibold text-gray-800 mb-6">Welcome back</h1>
+    
+      <form (ngSubmit)="login()" class="space-y-6">
+        
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">
+            Email address <span class="text-red-500">*</span> <!-- Add asterisk -->
+          </label>
+          <input
+            id="email"
+            type="email"
+            [(ngModel)]="credentials.email"
+            name="email"
+            placeholder="Enter your email"
+            required
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black"
+          />
+        </div>
+
+        <!-- Password -->
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700">
+            Password <span class="text-red-500">*</span> <!-- Add asterisk -->
+          </label>
+          <input
+            id="password"
+            type="password"
+            [(ngModel)]="credentials.password"
+            name="password"
+            placeholder="Enter your password"
+            required
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black"
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="w-full bg-black text-white py-2 rounded-md font-medium hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+        >
+          Sign in
+        </button>
+      </form>
+      <p class="text-sm text-center text-gray-600 mt-4">
+        Don’t have an account? <a href="/register" class="text-black hover:underline">Sign up</a>
+      </p>
+    </div>
+
+    <!-- Right Section -->
+    <div class="hidden lg:block w-1/2 bg-purple-200">
+      <div class="flex items-center justify-center h-full">
+        <img
+          src="assets/pictures/login2.jpg"
+          alt="Illustration"
+          class="w-full h-full"
+        />
+      </div>
+    </div>
+  </div>
+</div>

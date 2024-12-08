@@ -1,0 +1,52 @@
+<div class="feedback-list p-4">
+    <h2 class="text-xl font-bold mb-4">Customer Feedback</h2>
+    
+    <!-- Table to display feedback -->
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white border border-gray-300">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="border px-4 py-2">User ID</th>
+            <th class="border px-4 py-2">Order ID</th>
+            <th class="border px-4 py-2">Rating</th>
+            <th class="border px-4 py-2">Comments</th>
+            <th class="border px-4 py-2">Feedback Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let feedback of getPagedFeedback()" class="even:bg-gray-50 hover:bg-gray-200 transition">
+            <td class="border px-4 py-2">{{ feedback.userId }}</td>
+            <td class="border px-4 py-2">{{ feedback.orderId }}</td>
+            <td class="border px-4 py-2">{{ feedback.rating }}</td>
+            <td class="border px-4 py-2">{{ feedback.comments }}</td>
+            <td class="border px-4 py-2">{{ feedback.feedbackDate | date: 'short' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!-- Pagination Controls -->
+    <div class="flex justify-between items-center mt-4">
+      <!-- Previous Button -->
+      <button
+        (click)="goToPage(currentPage - 1)"
+        [disabled]="currentPage === 1"
+        class="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-400"
+      >
+        Previous
+      </button>
+  
+      <!-- Page Number -->
+      <span class="text-lg">{{ currentPage }} / {{ totalPages }}</span>
+  
+      <!-- Next Button -->
+      <button
+        (click)="goToPage(currentPage + 1)"
+        [disabled]="currentPage === totalPages"
+        class="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-400"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+  

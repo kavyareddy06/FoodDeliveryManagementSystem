@@ -1,0 +1,116 @@
+<app-nav></app-nav>
+<div class="container mx-auto p-6 px-32 pt-20">
+    <!-- Driver Details Section -->
+    <div class="bg-white shadow-md rounded-lg p-6 mb-6 flex flex-col md:flex-row items-center">
+      <div class="flex-1">
+        <h2 class="text-3xl font-bold text-center mb-4">Driver Details</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <p class="font-medium text-lg">Driver Name:</p>
+            <p class="text-xl text-gray-700">{{ driver.username }}</p>
+          </div>
+          <div>
+            <p class="font-medium text-lg">Email:</p>
+            <p class="text-xl text-gray-700">{{ driver.email }}</p>
+          </div>
+          <div>
+            <p class="font-medium text-lg">Phone Number:</p>
+            <p class="text-xl text-gray-700">{{ driver.phoneNumber }}</p>
+          </div>
+          <div>
+            <p class="font-medium text-lg">Total Deliveries:</p>
+            <p class="text-xl text-gray-700">{{ deliveries.length }}</p>
+          </div>
+        </div>
+      </div>
+      <!-- Icon Section -->
+      <div class="flex-none mt-4 md:mt-0 md:ml-6">
+        <img 
+          src="data:image/png;base64,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" 
+          alt="Driver Icon" 
+          class="rounded-full shadow-md w-42 h-42 mx-auto md:mx-0" />
+      </div>
+    </div>
+  
+    <!-- Deliveries List Section -->
+    <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+      <h2 class="text-3xl font-bold text-center mb-4">Deliveries</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto text-gray-700">
+            <thead>
+              <tr class="border-b">
+                <th class="py-2 px-4 text-left">Order ID</th>
+                <th class="py-2 px-4 text-left">Customer Name</th>
+                <th class="py-2 px-4 text-left">Phone Number</th>
+                <th class="py-2 px-4 text-left">Status</th>
+                <th class="py-2 px-4 text-left">Delivery Address</th>
+                <th class="py-2 px-4 text-left">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let delivery of deliveries">
+                <td class="py-2 px-4">{{ delivery.order.orderId }}</td>
+                <td class="py-2 px-4">
+                  <span (mouseover)="getUserDetails(delivery.order.userId)">
+                    {{ customerDetails[delivery.order.userId]?.username || 'Loading...' }}
+                  </span>
+                </td>
+                <td class="py-2 px-4">
+                  <span (mouseover)="getUserDetails(delivery.order.userId)">
+                    {{ customerDetails[delivery.order.userId]?.phoneNumber || 'Loading...' }}
+                  </span>
+                </td>
+                <td class="py-2 px-4">{{ delivery.deliveryStatus }}</td>
+                <td class="py-2 px-4">{{ delivery.deliveryAddress }}</td>
+                <td class="py-2 px-4">
+                  <button (click)="selectDelivery(delivery)" class="btn btn-primary">Update Status</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+      </div>
+    </div>
+  
+    <div *ngIf="selectedDeliveryId" class="bg-white shadow-lg rounded-xl p-6 space-y-6 max-w-4xl mx-auto mt-10">
+      <h2 class="text-3xl font-semibold text-center text-blue-600 mb-4">Update Delivery Status</h2>
+    
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Select Delivery -->
+        <div class="mb-4">
+          <label for="delivery" class="block text-lg font-medium text-gray-700">Select Delivery</label>
+          <select id="delivery" [(ngModel)]="selectedDeliveryId" class="select select-bordered w-full p-3 mt-2 rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500">
+            <option *ngFor="let delivery of deliveries" [value]="delivery.deliveryId">
+              Order {{ delivery.order.orderId }} - {{ delivery.deliveryStatus }}
+            </option>
+          </select>
+        </div>
+    
+        <!-- Status -->
+        <div class="mb-4">
+          <label for="status" class="block text-lg font-medium text-gray-700">Status</label>
+          <select id="status" [(ngModel)]="statusUpdate" class="select select-bordered w-full p-3 mt-2 rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500">
+            <option value="Picked Up">Picked Up</option>
+            <option value="In Transit">In Transit</option>
+            <option value="Delivered">Delivered</option>
+          </select>
+        </div>
+      </div>
+    
+      <!-- Location Input -->
+      <div class="mb-4">
+        <label for="location" class="block text-lg font-medium text-gray-700">Location</label>
+        <input type="text" id="location" [(ngModel)]="locationUpdate" class="input input-bordered w-full p-3 mt-2 rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500" />
+      </div>
+    
+      <!-- Update Button -->
+      <div class="flex justify-center">
+        <button (click)="updateDeliveryStatus()" class="btn btn-primary w-full md:w-auto px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          Update Status
+        </button>
+      </div>
+    </div>
+    
+    
+  </div>
+  

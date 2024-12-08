@@ -1,0 +1,85 @@
+
+<app-nav></app-nav>
+<app-nav></app-nav>
+<div 
+  class="banner h-[400px] w-full bg-cover bg-center" 
+  [ngStyle]="{ 'background-image': 'url(assets/pictures/bg-intro-01.jpg)' }"
+>
+  <div class="h-full w-full bg-opacity-30 flex items-center justify-center">
+    <h1 class="text-white text-4xl font-bold">Welcome to Our Restaurant!</h1>
+  </div>
+</div>
+
+
+<div *ngIf="promotions && promotions.length > 0" class="pt-10">
+  <h1 class="text-red-500 text-2xl sm:text-3xl font-extrabold text-center">
+    Deals For You!!!
+  </h1>
+  <div class="promotion-carousel py-8 px-4">
+    <div class="promotion-slider flex gap-6 overflow-x-auto no-scrollbar">
+      <div 
+        class="promotion-slide flex items-center bg-white shadow-lg rounded-lg p-4 min-w-[250px] max-w-[300px] transition-transform hover:scale-105"
+        *ngFor="let promotion of promotions">
+        <img 
+          class="h-16 w-16 rounded-full border-2 border-red-300 mr-4" 
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz6wW_a9fNqUKzkrx9sUMV9SqW3GutD06Llw&s" 
+          alt="{{ promotion.code }}">
+        <div class="promotion-info text-left">
+          <p class="text-lg font-bold text-gray-800">{{ promotion.code }}</p>
+          <p class="text-sm font-medium text-gray-600"> Discount: {{ promotion.discountAmount }}</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Carousel Navigation buttons positioned near the promotions -->
+
+  </div>
+</div>
+
+
+
+
+
+  
+<body>
+<div *ngIf="menuItems && menuItems.length > 0" class=" pb-7 bg-gray-50 min-h-screen">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div *ngFor="let item of menuItems" class="minip">
+        <div class="mg">
+          <div class="clr"></div>
+          <div class="group">
+            <span>{{ item.name }}</span>
+          </div>
+        </div>
+        <div 
+          class="av" 
+          [style.background-image]="'url(' + getCuisineImage(item.category) + ')'"
+        ></div>
+        <div class="info">
+         
+          
+           <span class="font-extrabold text-xl">{{ item.price | currency }} › </span>
+          
+            {{ item.description }}
+         
+        </div>
+        <a
+          *ngIf="item.availability" 
+          class="plot" 
+          title="Add to Cart" 
+          (click)="addToCart(item)"
+          href="/cart"
+        >
+          Add to Cart →
+      </a>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="menuItems.length === 0" class="flex items-center justify-center min-h-screen bg-gray-50">
+    <p class="text-gray-700 text-xl font-medium">No menu items available.</p>
+  </div>
+  
+ 
+</body>
+  <router-outlet></router-outlet>

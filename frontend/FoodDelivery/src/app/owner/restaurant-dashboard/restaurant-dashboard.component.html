@@ -1,0 +1,149 @@
+<div class="container mx-auto p-6">
+    <!-- Check if restaurant exists -->
+    <div *ngIf="!restaurant || !restaurant.restaurantId">
+      <!-- If no restaurant, show message and add restaurant button -->
+      <div class="bg-white shadow-xl rounded-lg p-6 mb-6">
+        <h2 class="text-3xl font-semibold mb-4 text-center text-gray-800">No Restaurant Found</h2>
+        <p class="text-lg mb-4 text-gray-600 text-center">You don't have a restaurant yet. Please add one to manage your menu items.</p>
+        <div class="flex justify-center">
+            <button 
+            class="bg-green-600 text-white px-6 py-3 rounded-full text-lg shadow-md hover:bg-green-700 focus:outline-none w-full md:w-auto transition-all duration-300 ease-in-out" 
+            (click)="showAddRestaurantForm()">
+            Add Restaurant
+          </button>
+          
+        </div>
+      </div>
+    
+      <!-- Add Restaurant Form -->
+      <div *ngIf="isAddingRestaurant" class="bg-white shadow-xl rounded-lg p-6 mb-6">
+        <h2 class="text-3xl font-semibold mb-6 text-center text-gray-800">Add Your Restaurant</h2>
+        <form (ngSubmit)="addRestaurant()">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label for="name" class="block text-lg text-gray-700">Name:</label>
+              <input [(ngModel)]="restaurantForm.name" name="name" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+            </div>
+            <div>
+              <label for="address" class="block text-lg text-gray-700">Address:</label>
+              <input [(ngModel)]="restaurantForm.address" name="address" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+            </div>
+          </div>
+  
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label for="cuisineType" class="block text-lg text-gray-700">Cuisine Type:</label>
+              <input [(ngModel)]="restaurantForm.cuisineType" name="cuisineType" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+            </div>
+            <div>
+              <label for="phone" class="block text-lg text-gray-700">Phone:</label>
+              <input [(ngModel)]="restaurantForm.phone" name="phone" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+            </div>
+          </div>
+  
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label for="hoursOfOperation" class="block text-lg text-gray-700">Hours of Operation:</label>
+              <input [(ngModel)]="restaurantForm.hoursOfOperation" name="hoursOfOperation" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+            </div>
+            <div>
+              <label for="status" class="block text-lg text-gray-700">Status:</label>
+              <input [(ngModel)]="restaurantForm.status" name="status" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+            </div>
+          </div>
+  
+          <div class="flex justify-center mt-6 flex-col sm:flex-row gap-4">
+            <button type="submit" class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg shadow-md hover:bg-blue-700 focus:outline-none w-full sm:w-auto transition-all duration-300 ease-in-out">Save Restaurant</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <!-- If restaurant exists, show restaurant details -->
+    <div *ngIf="restaurant && restaurant.restaurantId">
+      <div class="bg-white shadow-xl rounded-lg p-6 mb-6">
+        <h2 class="text-3xl font-semibold mb-6 text-center text-gray-800">Restaurant Overview</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="flex justify-between">
+            <strong class="text-lg text-gray-700">Name:</strong>
+            <p class="text-lg text-gray-600">{{ restaurant.name }}</p>
+          </div>
+          <div class="flex justify-between">
+            <strong class="text-lg text-gray-700">Address:</strong>
+            <p class="text-lg text-gray-600">{{ restaurant.address }}</p>
+          </div>
+          <div class="flex justify-between">
+            <strong class="text-lg text-gray-700">Cuisine Type:</strong>
+            <p class="text-lg text-gray-600">{{ restaurant.cuisineType }}</p>
+          </div>
+          <div class="flex justify-between">
+            <strong class="text-lg text-gray-700">Phone:</strong>
+            <p class="text-lg text-gray-600">{{ restaurant.phone }}</p>
+          </div>
+          <div class="flex justify-between">
+            <strong class="text-lg text-gray-700">Hours of Operation:</strong>
+            <p class="text-lg text-gray-600">{{ restaurant.hoursOfOperation }}</p>
+          </div>
+          <div class="flex justify-between">
+            <strong class="text-lg text-gray-700">Status:</strong>
+            <p class="text-lg text-gray-600">{{ restaurant.status }}</p>
+          </div>
+        </div>
+        <div class="mt-6 flex justify-center space-x-4 flex-col sm:flex-row gap-4">
+          <button class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg shadow-md hover:bg-blue-700 focus:outline-none w-full sm:w-auto transition-all duration-300 ease-in-out" (click)="editRestaurant()">Edit Restaurant</button>
+          <!-- <button class="bg-red-600 text-white px-8 py-3 rounded-full text-lg shadow-md hover:bg-red-700 focus:outline-none w-full sm:w-auto transition-all duration-300 ease-in-out" (click)="deleteRestaurant()">Delete Restaurant</button> -->
+          <a 
+          [routerLink]="['/add-menu-item', restaurant.restaurantId]" 
+          class="bg-yellow-600 text-white px-8 py-3 rounded-full text-lg shadow-md hover:bg-yellow-700 focus:outline-none w-full sm:w-auto transition-all duration-300 ease-in-out">
+          Go to Menu Items
+        </a>
+        
+        </div>
+      </div>
+    </div>
+  
+    <!-- Edit Restaurant Form -->
+    <div class="bg-white shadow-xl rounded-lg p-6 mb-6" *ngIf="isEditingRestaurant">
+      <h2 class="text-3xl font-semibold mb-6 text-center text-gray-800">Edit Restaurant</h2>
+      <form (ngSubmit)="updateRestaurant()">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="name" class="block text-lg text-gray-700">Name:</label>
+            <input type="text" id="name" [(ngModel)]="restaurantForm.name" name="name" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          <div>
+            <label for="address" class="block text-lg text-gray-700">Address:</label>
+            <input type="text" id="address" [(ngModel)]="restaurantForm.address" name="address" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+        </div>
+  
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="cuisineType" class="block text-lg text-gray-700">Cuisine Type:</label>
+            <input type="text" id="cuisineType" [(ngModel)]="restaurantForm.cuisineType" name="cuisineType" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          <div>
+            <label for="phone" class="block text-lg text-gray-700">Phone:</label>
+            <input type="text" id="phone" [(ngModel)]="restaurantForm.phone" name="phone" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+        </div>
+  
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="hoursOfOperation" class="block text-lg text-gray-700">Hours of Operation:</label>
+            <input type="text" id="hoursOfOperation" [(ngModel)]="restaurantForm.hoursOfOperation" name="hoursOfOperation" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          <div>
+            <label for="status" class="block text-lg text-gray-700">Status:</label>
+            <input type="text" id="status" [(ngModel)]="restaurantForm.status" name="status" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+        </div>
+  
+        <div class="flex justify-center space-x-4 flex-col sm:flex-row gap-4 mt-6">
+          <button type="submit" class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg shadow-md hover:bg-blue-700 focus:outline-none w-full sm:w-auto transition-all duration-300 ease-in-out">Save Changes</button>
+          <button type="button" class="bg-gray-600 text-white px-8 py-3 rounded-full text-lg shadow-md hover:bg-gray-700 focus:outline-none w-full sm:w-auto transition-all duration-300 ease-in-out" (click)="cancelEdit()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+ <!-- <button (click)="promotionPage()">AdddPromotion</button>-->

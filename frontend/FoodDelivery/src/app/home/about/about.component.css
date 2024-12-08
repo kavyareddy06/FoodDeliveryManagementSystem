@@ -1,0 +1,15 @@
+.bg-title-page {
+    background-size: cover;
+    background-position: center;
+    padding-top: 160px;
+    padding-bottom: 80px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.tit6 {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    color: white;
+}
